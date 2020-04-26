@@ -1,0 +1,6 @@
+{
+    "dev": {
+        "region": "<region>",
+        "account": "<account-id>"
+    }
+}

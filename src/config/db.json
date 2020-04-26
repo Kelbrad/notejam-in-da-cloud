@@ -1,0 +1,7 @@
+{
+  "dev": {
+    "dbName": "notejamDb",
+    "dbUserName": "master",
+    "dbPassword": "password"
+  }
+}
