@@ -13,14 +13,14 @@ Application & infrastructure provision is done via CDK (https://github.com/aws/a
 ### Configuration
 *configure your AWS account (modify /docker/tomcat-base/build.sh, /notejam-app/build.sh and /src/config/general.json files include appropriate Account ID and Region)
 
-###Install
+### Install
 
 Installation scripts require Linux bash shell!
-*Install JDK (https://openjdk.java.net/).
-*Install Node.js 12+ (https://nodejs.org/en/).
-*Install Maven2 (https://maven.apache.org/).
-*Install Docker (https://www.docker.com/).
-*Install & configure AWS CLI (https://aws.amazon.com/cli/).
+* Install JDK (https://openjdk.java.net/).
+* Install Node.js 12+ (https://nodejs.org/en/).
+* Install Maven2 (https://maven.apache.org/).
+* Install Docker (https://www.docker.com/).
+* Install & configure AWS CLI (https://aws.amazon.com/cli/).
 
 Install npm dependencies:
 ```bash
