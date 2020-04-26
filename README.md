@@ -1,66 +1,56 @@
-***************
-Notejam: In Da Cloud
-***************
+
+# Notejam: In Da Cloud
 
 Notejam application deployement to AWS environment with:
-- VPC consistent of 6 subnets (2 public for ELB, 2 private for ECS cluster, 2 isolation for databases) in 2 AZs
-- PostgreSQL database deployed in multi AZ
-- Autoscaling ECS cluster with initially 2 EC2 instances (up to 4) and 2 tasks running (each containing single Notejam spring application deployed on tomcat) + ALB
-- Cloudfront for static assets caching
+* VPC consistent of 6 subnets (2 public for ELB, 2 private for ECS cluster, 2 isolation for databases) in 2 AZs
+* PostgreSQL database deployed in multi AZ
+* Autoscaling ECS cluster with initially 2 EC2 instances (up to 4) and 2 tasks running (each containing single Notejam spring application deployed on tomcat) + ALB
+* Cloudfront for static assets caching
 
 Application & infrastructure provision is done via CDK (https://github.com/aws/aws-cdk)
 
-==========================
-Installation and launching
-==========================
+## Installation and launching
+### Configuration
+*configure your AWS account (modify /docker/tomcat-base/build.sh, /notejam-app/build.sh and /src/config/general.json files include appropriate Account ID and Region)
 
--------------
-Configuration
--------------
-
-- configure your AWS account (modify /docker/tomcat-base/build.sh, /notejam-app/build.sh and /src/config/general.json files include appropriate Account ID and Region)
-
--------
-Install
--------
+###Install
 
 Installation scripts require Linux bash shell!
-
-Install JDK (https://openjdk.java.net/).
-Install Node.js 12+ (https://nodejs.org/en/).
-Install Maven2 (https://maven.apache.org/).
-Install Docker (https://www.docker.com/).
-Install & configure AWS CLI (https://aws.amazon.com/cli/).
+*Install JDK (https://openjdk.java.net/).
+*Install Node.js 12+ (https://nodejs.org/en/).
+*Install Maven2 (https://maven.apache.org/).
+*Install Docker (https://www.docker.com/).
+*Install & configure AWS CLI (https://aws.amazon.com/cli/).
 
 Install npm dependencies:
-```
+```bash
 npm install
 ```
 
 Deploy Commons stack (ECR repository):
-```
+```bash
 npm run deploy:common:dev
 ```
 
 Build & deploy to ECR Tomcat container:
-```
+```bash
 npm run tomcat:base:build -- <container_version>
 ```
 <container_version> should be normally provided by CI tool, you can pass here any string, this will be image tag
 
 Build & deploy to ECR Notejam container:
-```
+```bash
 npm run notejam:build -- <container_version>
 ```
 <container_version> should be normally provided by CI tool, you can pass here any string, this will be image tag
 
 Deploy AWS infrastructure:
-```
+```bash
 npm run deploy:notejam:dev
 ```
 
 To deploy new version of container run:
-```
+```bash
 npm run notejam:build -- <container_version>
 npm run update:notejam:dev
 ```
